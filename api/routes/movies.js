@@ -34,7 +34,7 @@ router.put('/:id', verify, async (req, res) => {
 			res.status(500).json(error);
 		}
 	} else {
-		res.status(403).json('You are not allowed to update new movie!');
+		res.status(403).json('You are not allowed to update movie!');
 	}
 });
 

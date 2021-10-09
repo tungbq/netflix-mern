@@ -14,7 +14,7 @@ router.post('/', verify, async (req, res) => {
 			res.status(500).json(error);
 		}
 	} else {
-		res.status(403).json('You are not allowed to create new movie!');
+		res.status(403).json('You are not allowed to create new movie list!');
 	}
 });
 
