@@ -2,7 +2,9 @@ const router = require('express').Router();
 const List = require('../models/List.js');
 const verify = require('../utils/verifyToken.js');
 
-// Create
+// @desc    Create new movie list
+// @route   POST /api/lists/
+// @access  Private/Admin
 router.post('/', verify, async (req, res) => {
 	if (req.user.isAdmin) {
 		const newList = new List(req.body);
@@ -18,7 +20,9 @@ router.post('/', verify, async (req, res) => {
 	}
 });
 
-// Delete
+// @desc    Delete movie list by ID
+// @route   DELETE /api/lists/:id
+// @access  Private/Admin
 router.delete('/:id', verify, async (req, res) => {
 	if (req.user.isAdmin) {
 		try {
@@ -32,7 +36,9 @@ router.delete('/:id', verify, async (req, res) => {
 	}
 });
 
-// Get
+// @desc    Get all lists
+// @route   GET /api/lists/
+// @access  Private
 router.get('/', verify, async (req, res) => {
 	const typeQuery = req.query.type;
 	const genreQuery = req.query.genre;
