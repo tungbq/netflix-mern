@@ -3,7 +3,9 @@ const User = require('../models/User.js');
 const CryptoJS = require('crypto-js');
 const verify = require('../utils/verifyToken.js');
 
-// Update
+// @desc    Update user
+// @route   PUT /api/users/:id
+// @access  Private
 router.put('/:id', verify, async (req, res) => {
 	if (req.user.id === req.params.id || req.user.isAdmin) {
 		if (req.body.password) {
@@ -34,7 +36,9 @@ router.put('/:id', verify, async (req, res) => {
 	}
 });
 
-// Delete
+// @desc    Delete user
+// @route   DELETE /api/users/:id
+// @access  Private
 router.delete('/:id', verify, async (req, res) => {
 	if (req.user.id === req.params.id || req.user.isAdmin) {
 		try {
@@ -48,7 +52,9 @@ router.delete('/:id', verify, async (req, res) => {
 	}
 });
 
-// Get
+// @desc    Get user by ID
+// @route   GET /api/users/find/:id
+// @access  Public
 router.get('/find/:id', async (req, res) => {
 	try {
 		const user = await User.findById(req.params.id);
@@ -61,7 +67,9 @@ router.get('/find/:id', async (req, res) => {
 	}
 });
 
-// Get All
+// @desc    Get all users
+// @route   GET /api/users/
+// @access  Private
 router.get('/', verify, async (req, res) => {
 	const query = req.query.new;
 	if (req.user.id === req.params.id || req.user.isAdmin) {
@@ -78,7 +86,9 @@ router.get('/', verify, async (req, res) => {
 	}
 });
 
-// Get user stats
+// @desc    Get user stats
+// @route   GET /api/users/stats
+// @access  Public
 router.get('/stats', verify, async (req, res) => {
 	const today = new Date();
 	const lastYear = today.setFullYear(today.setFullYear() - 1);
